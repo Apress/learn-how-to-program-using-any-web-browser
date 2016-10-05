@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+   <TITLE>Text Input Events</TITLE>
+</HEAD>
+<BODY>
+<SCRIPT>
+var newWin = window.open("","MonitorEvents","width=300, height=500");
+var doc = newWin.document;
+
+function handler(e){
+   if (navigator.appName == "Microsoft Internet Explorer"){
+      e = window.event;
+      doc.writeln("Event Type: " + e.type);
+      if (e.keyCode) doc.writeln("Keycode: " + String.fromCharCode(e.keyCode));
+      if (e.altKey) doc.writeln("Alt Key: " + e.altKey);
+      if (e.ctrlKey) doc.writeln("Ctrl Key: " + e.ctrlKey);
+      if (e.shiftKey) doc.writeln("Shift Key: " + e.shiftKey);
+   }
+   else   {
+      doc.writeln("Event Type: " + e.type);
+      if (e.target) doc.writeln("Target: " + Object.prototype.toString.apply(e.target));
+      if (e.target.name) doc.writeln("Target Name: " +  e.target.name);
+      if (e.which) doc.writeln("Which: " +  String.fromCharCode(e.which));
+      if (e.modifiers) doc.writeln("Modifiers: " +  e.modifiers);
+    }
+}
+function addhandlers(o){
+   o.onblur = handler;
+   o.onchange = handler;
+   o.onfocus = handler;
+   o.onkeydown = handler;
+   o.onkeypress = handler;
+   o.onkeyup = handler;
+}
+
+function startForm(){
+   addhandlers(document.theForm.userLname);
+   addhandlers(document.theForm.userFname);
+   addhandlers(document.theForm.userProf);
+   addhandlers(document.theForm.userCity);
+}
+   
+</SCRIPT>
+<FORM name="theForm">
+<TABLE>
+<tr><td>
+Enter Your First Name:
+</td><td>
+<INPUT type=text name="userFname">
+</td><td></tr><tr><td>
+Enter Your Last Name:
+</td><td>
+<INPUT type=text name="userLname">
+</td><td></tr>
+<tr><td>
+Enter Your Profession:
+</td><td>
+<INPUT type=text name="userProf">
+</td><td></tr><tr><td>
+Enter Your City:
+</td><td>
+<INPUT type=text name="userCity">
+</td></tr>
+<tr><td colspan=2>
+<INPUT type=button name="theButton" value="START THE THING" onClick="startForm();">
+</td></tr>
+</TABLE>
+</FORM>
+</BODY>
+</HTML>

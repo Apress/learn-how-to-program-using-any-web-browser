@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+   <TITLE>Validate</TITLE>
+<SCRIPT>
+function checkLawyer(str) {  
+   if ((str.toUpperCase() == "LAWYER") ||
+         (str.toUpperCase() == "ATTORNEY"))
+         alert ("Lawyers are not wanted here...");
+   else
+      alert("Your application will be evaluated!");
+         
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>
+Pearly Gates Admission Form!
+</H1>
+Note: Fields marked with an asterisk (*) are required. Saint Peter will know if you lie.
+<FORM name="theForm">
+<TABLE>
+<tr><td>
+Enter Your First Name (*):
+</td><td>
+<INPUT type=text name="userFname">
+</td><td></tr><tr><td>
+Enter Your Last Name (*):
+</td><td>
+<INPUT type=text name="userLname">
+</td><td></tr>
+<tr><td>
+Enter Your Profession (*):
+</td><td>
+<INPUT type=text name="userProf">
+</td><td></tr><tr><td>
+Enter Your City:
+</td><td>
+<INPUT type=text name="userCity">
+</td></tr>
+<tr><td colspan=2>
+<INPUT type=button name="theButton" value="SUBMIT QUERY"    onClick="checkLawyer(window.document.theForm.userProf.value)";>
+</td></tr>
+</TABLE>
+</FORM>  
+</BODY>
+</HTML>

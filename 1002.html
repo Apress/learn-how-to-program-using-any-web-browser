@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+   <TITLE>Squash Bugs!</TITLE>
+<SCRIPT>
+function countWords(str){
+   var count = 0;
+   words = str.split(" "); 
+    for (i=1 ; i < words.length ; i++){
+       alert("The count is " + i + " ; current word is " + words[i]);
+       // inner loop -- do the count
+       if (words[i] != "")
+          count += 1; 
+    }
+
+   document.theForm.results.value = 
+      "There are " +
+      count +
+      " words in the text string you entered!";
+}
+
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>
+Squash Those Bugs!
+</H1>
+
+<FORM name="theForm">
+<TABLE>
+<tr><td colspan=5>
+Enter a text string:
+</td></tr><tr><td colspan=5>
+<TEXTAREA name=inStr rows=5 cols=90>
+</TEXTAREA>
+</td></tr>
+<tr>
+<td colspan=4>
+<INPUT type=button value="Count Words" onClick="countWords(document.theForm.inStr.value)";>
+</td>
+<td>
+<INPUT type=button value="Clear" onClick='document.theForm.inStr.value=""';>
+</td>
+</tr>
+<tr><td colspan=5>
+<br><hr>
+Results<br>
+</td></tr>
+<tr><td colspan=5>
+<TEXTAREA name=results rows=5 cols=90>
+</TEXTAREA>
+</td></tr>
+<tr><td colspan=5>
+<INPUT type=button name="theButton" value="Clear Results" onClick='document.theForm.results.value=""';>
+</td></tr>
+</TABLE>
+</FORM>  
+</BODY>
+</HTML>

@@ -1,0 +1,72 @@
+<HTML>
+   <HEAD>
+      <TITLE>
+      JavaScript "Rock, Scissors, Paper" Game
+      </TITLE>
+   <SCRIPT>
+   //  © Harold Davis 2003 - all rights reserved.
+   function whoWon (iplay, uplay) {   
+      // "I" am the computer
+      if (iplay == uplay)
+         return "IT'S A TIE! TRY AGAIN, FRAIL HUMAN ENTITY?";
+      if (iplay == "rock") {
+         if (uplay == "scissors")
+            return "I WIN! ROCK SMASHES SCISSORS! COMPUTERS FOREVER!"
+         else
+            return "YOU WIN. Paper covers rock. Paltry human, how did you beat me?";
+      }
+      if (iplay == "scissors") {
+         if (uplay == "paper")
+            return "I WIN! SCISSORS CUT PAPER! CHIPS BEAT BRAINS!"
+         else
+            return "YOU WIN. Rock smashes scissors. Frail human, would you like to try again?";
+      }
+      if (iplay == "paper") {
+         if (uplay == "rock")
+            return "I WIN! PAPER COVERS ROCK! ROCK AND ROLL, BABY!"
+         else
+            return "YOU WIN. Scissors cut paper. Oh, vain flesh and bone entity, I'll get you next time!";
+      }
+   }
+   function shakeIt(){
+      var randGen = Math.random();
+      if (randGen <= .33) 
+         var computerPlay = "rock";
+      if ((randGen >.33) && (randGen <= .66))
+         var computerPlay = "scissors";
+      if (randGen > .66)      
+         var computerPlay = "paper";
+      if (document.gameForm.game[0].checked) 
+          var personPlay = "rock";
+      if (document.gameForm.game[1].checked) 
+         var personPlay = "paper";
+      if (document.gameForm.game[2].checked) 
+         var personPlay = "scissors";
+      alert ("The computer played: " + computerPlay +
+             ". You played: " + personPlay + ".  " + whoWon(computerPlay,personPlay));
+
+   }
+   </SCRIPT>
+   </HEAD>
+   <BODY>
+   <H2>
+   Play "Rock, Scissors and Paper" the JavaScript way!
+   </H2> 
+   <UL>
+      <Li>Rock smashes scissors! 
+      <Li>Scissors cut paper!
+      <li>Paper covers rock!
+   </UL>
+   <FORM name="gameForm">
+   <P>Make a choice:
+   <BR>
+   <input type="radio" name="game" value="Rock" checked><STRONG>Rock</STRONG><BR>
+   <input type="radio" name="game" value="Paper"><STRONG>Paper</STRONG><BR>
+   <input type="radio" name="game" value="Scissors"><STRONG>Scissors</STRONG>
+   <P>
+   <BR>
+   <BR>
+   <INPUT type="button" name="play" value="Play" onClick="shakeIt();">
+   </FORM>
+   </BODY>
+</HTML>

@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+   <TITLE>Custom objects and associative object arrays</TITLE>
+<SCRIPT>
+function showProperties (theObject){
+   for (i in theObject) {
+      if (theObject[i] != null) {
+          document.write(i + " : " + theObject[i] + "<br>");
+           
+      }
+      else {
+         document.write(i + "<br>");
+      }
+   }
+   return;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT>
+function Rectangle(height, width){
+   // constructor function
+      this.height =  height;
+      this.width = width;
+   }
+  
+   // create the function
+   function calc_Area () {
+      return this.height * this.width;
+   }
+   // turn the function into an object method
+   Rectangle.prototype.calcArea = calc_Area;
+
+   // instantiate the object
+   var theRectangle = new Rectangle (3, 5);
+
+   // set an instance property
+   theRectangle.width = 10;
+showProperties (theRectangle);
+</SCRIPT>
+</BODY>
+</HTML>

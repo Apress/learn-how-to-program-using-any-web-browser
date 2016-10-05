@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>Instance method demo</TITLE>
+</HEAD>
+   <BODY>
+   <H1>
+   <SCRIPT>
+   function Rectangle(height, width){
+   // constructor function
+      this.height =  height;
+      this.width = width;
+   }
+  
+   // create the function
+   function calc_Area () {
+      return this.height * this.width;
+   }
+   // turn the function into an object method
+   Rectangle.prototype.calcArea = calc_Area;
+
+   // instantiate the object
+   var theRectangle = new Rectangle (3, 5);
+
+   // set an instance property
+   theRectangle.width = 10;
+
+   // call and display the instance properties and method return
+   document.write("The rectangle instance height is: " + theRectangle.height + "<br>");
+   document.write("The rectangle instance width is: " + theRectangle.width  + "<br>");
+   document.write ("The calcArea method returns: " + theRectangle.calcArea());
+   </SCRIPT>
+   </H1>
+   </BODY>
+</HTML>

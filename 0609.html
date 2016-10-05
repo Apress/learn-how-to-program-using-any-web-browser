@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+<TITLE>
+Case-insensitive comparison
+</TITLE>
+<HEAD>
+   <BODY>
+   <H1>
+   <SCRIPT>
+    var theArray = new Array("a","Neo","Morpheus","Trinity","Mr. Smith", "N", "n", "A",2);
+    document.write ("Original array: " + theArray);
+    document.write ("<br>");
+    theArray.sort();
+    document.write ("Default Sorted array: " + theArray);
+    document.write ("<br>");
+    theArray.sort(function(x,y){
+      var a = String(x).toUpperCase();
+      var b = String(y).toUpperCase();
+      if (a > b)
+         return 1
+      if (a < b)
+         return -1
+      return 0;
+    });
+    document.write ("Custom sorted array: " + theArray);
+   </SCRIPT>
+   </H1>
+   </BODY>
+</HTML>

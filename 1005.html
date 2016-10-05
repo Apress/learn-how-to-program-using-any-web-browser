@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+   <TITLE>Throw that error!</TITLE>
+<SCRIPT>
+function throwError(errString) {
+   try {
+      throw new Error (42, errString);
+   }
+   catch(e){
+      alert("Error number: " + e.number + "; Description: " + e.description)
+   }   
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+
+<H1>
+Throw that error!
+</H1>
+
+<FORM name="theForm">
+<TABLE>
+<TR><TD colspan=2>
+Enter text for the error:
+</TD>
+<TD>
+<INPUT type=text name=errText size=40>
+</TD>
+</TR>
+<TR><TD colspan=2>
+</TD>
+<TD>
+<INPUT type=button name=btnThrow value="Throw it!" onClick="throwError(document.theForm.errText.value);">
+</TD>
+</TR>
+
+</TABLE>
+</FORM>  
+</BODY>
+</HTML>

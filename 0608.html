@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<TITLE>
+Numeric comparison
+</TITLE>
+<HEAD>
+   <BODY>
+   <H1>
+   <SCRIPT>
+    function numSort(a,b){
+       return a - b;
+    }
+    var numArray = new Array (59, 4, 63, 12, 17, 3, 2, 1)
+    document.write ("Original array: " + numArray);
+    document.write ("<br>");
+    document.write ("Default Sorted array: " + numArray.sort());
+    document.write ("<br>");
+    document.write ("Numerically sorted array: " + numArray.sort(numSort));
+    document.write ("<br>");
+    document.write ("<br>");
+   </SCRIPT>
+   </H1>
+   </BODY>
+</HTML>

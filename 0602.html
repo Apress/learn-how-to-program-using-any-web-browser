@@ -1,0 +1,26 @@
+<HTML>
+   <HEAD>
+   <TITLE>
+   Iteration
+   </TITLE>
+   </HEAD>
+   <BODY>
+   <H1>
+   <SCRIPT>
+      var myArray = new Array(4);
+      myArray[0] = "dog";
+      myArray[1] = "cat";
+      myArray[2] = "snake";
+      myArray[3] = "dragon";
+      myArray[6] = "chicken";
+      // myArray[1] = undefined;
+     delete myArray[1]
+     for (var i = 0; i < myArray.length; i++){
+       // if (myArray[i] != undefined)
+       if (myArray[i])
+        document.write("myArray[" + i + "] = " + myArray[i] + "<br>");
+     }     
+   </SCRIPT>
+   </H1>
+   </BODY>
+</HTML>

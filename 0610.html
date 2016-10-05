@@ -1,0 +1,50 @@
+<HTML>
+   <HEAD>
+   <TITLE>
+   Elements Array
+   </TITLE>
+   </HEAD>
+   <BODY>
+   <SCRIPT>
+   function uClicked (theBox){
+      if (!theBox.checked)
+         alert ("You unchecked the box.");
+      else
+         alert ("You checked the box.");       
+   }
+   function clearChecks(form){
+      for (var i = 0; i < 100; ++i) {
+         form.elements[i].checked = false;
+      }
+   }
+   function checkAll(form){
+      for (var i = 0; i < 100; ++i) {
+         form.elements[i].checked = true;
+      }
+   }
+   document.write("<FORM><CENTER>")
+      document.write("<font size=6 face='Courier'>");
+      for (var i = 0; i < 10; ++i) {    
+         document.write(i);
+      }
+      document.write("</font> <br>");
+   for (var i = 0; i < 10; ++i) {
+      document.write("<font size=6 face='Courier'>");
+      document.write(i);
+      document.write("</font>");
+      for (var j = 0; j < 10; ++j) {
+         document.write('<INPUT TYPE="checkbox" ');
+         document.write('onClick="uClicked(this)">');
+      }
+      document.write("<BR>");
+   }
+   document.write("<BR>");
+   document.write("<HR SIZE=1 WIDTH=40%>");
+   document.write('<INPUT TYPE="button" VALUE="Check All" ');
+   document.write('onClick="checkAll(this.form)">')
+   document.write('<INPUT TYPE="button" VALUE="Clear Checks" ');
+   document.write('onClick="clearChecks(this.form)">')
+   document.write("</CENTER></FORM>")
+   </SCRIPT>
+   </BODY>
+</HTML>

@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+<TITLE>
+Two-dimensional array work around
+</TITLE>
+<HEAD>
+   <BODY>
+   <SCRIPT>
+    var matrix = new Array(4);
+    matrix[0] = new Array(4);
+    matrix[1] = new Array(4);
+    matrix[2] = new Array(4);
+    matrix[3] = new Array(4);
+
+    matrix[0][0] = "Neo";
+    matrix[0][1] = "6";
+    matrix[0][2] = "142-1223-689";
+    matrix[0][3] = "Doesn't Neo know that life is a dream?";
+    
+    matrix[1][0] = "Morpheus";
+    matrix[1][1] = "6:3";
+    matrix[1][3] = "Morpheus? Who is Morpheus?";
+
+    matrix[2][0] = "Trinity";
+    matrix[2][1] = "5:8";
+    matrix[2][3] = "She is a legend in her own Zion";
+
+
+    matrix[3][0] = "Mr. Smith";
+    matrix[3][1] = "6:2";
+    matrix[3][3] = "There are many copies of Mr. Smith";
+
+    for (var i = 0; i < matrix.length; i++){
+	for (var j = 0; j < matrix.length; j++){
+        document.write ("Element (" + i + ", " + j + ") is " + matrix[i][j] + " -- ");
+       }
+       document.write("<br>");
+    }
+   </SCRIPT>
+   </BODY>
+</HTML>

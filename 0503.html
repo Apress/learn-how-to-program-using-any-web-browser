@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+   <TITLE>
+   Add three numbers
+   </TITLE>
+   <SCRIPT>
+   function addThreeNums (inOne, inTwo, inThree) {
+      var inOne = Number(inOne);
+      var inTwo = Number(inTwo);
+      var inThree = Number(inThree);
+      return Number(inOne + inTwo + inThree);
+   }
+   </SCRIPT>
+</HEAD>
+<BODY>
+   <FORM Name="theForm">
+   <TABLE cellspacing=5>
+      <TR>
+         <TD><INPUT Type=Text Name="num1"></TD><TD><INPUT Type=Text Name="num2">
+         </TD><TD><INPUT Type=Text Name="num3"></TD>
+      </TR>
+      <TR>
+         <TD></TD><TD></TD><TD align=right><INPUT Type=Button Value="Add Them" 
+         onClick='document.write("The sum of the three numbers is " +                                     addThreeNums(theForm.num1.value,theForm.num2.value,theForm.num3.value));'> </TD>
+      </TR>
+   </TABLE>
+</FORM>
+</BODY>
+</HTML>

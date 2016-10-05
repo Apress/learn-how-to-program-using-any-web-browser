@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+   <TITLE>
+   Add all of the numbers
+   </TITLE>
+   <SCRIPT>
+   function addNums () {
+      var theAnswer = 0;
+      for (var i = 0; i < addNums.arguments.length; i++) {
+         var theNum = Number(addNums.arguments[i]);
+         theAnswer += theNum;
+      }
+      return theAnswer;
+   } 
+   </SCRIPT>
+</HEAD>
+<BODY>
+   <FORM Name="theForm">
+   <TABLE cellspacing=5>
+      <TR>
+         <TD><INPUT Type=Text Name="num1"></TD><TD><INPUT Type=Text Name="num2">
+         </TD><TD><INPUT Type=Text Name="num3"></TD>
+      </TR>
+      <TR>
+         <TD><INPUT Type=Text Name="num4"></TD><TD></TD><TD align=right><INPUT Type=Button Value="Add Them"         onClick='document.write("The sum of the numbers is " +                                                  addNums(theForm.num1.value,theForm.num2.value,theForm.num3.value,theForm.num4.value));'> </TD>
+      </TR>
+   </TABLE>
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<TITLE>Don't bug me, please!
+</TITLE>
+</HEAD>
+<BODY>
+<H1>
+<SCRIPT>
+function dosomething() {
+}
+function goodFunc(){
+   try {
+      doSomething();
+   }
+   catch (e) {
+      if (e.description == "Object expected") {
+         alert("Cannot find a function named doSomething!");
+      }
+      else {
+         alert ("Other error" + e.description);
+      }
+   }
+}
+
+</SCRIPT>
+</H1>
+<FORM>
+<INPUT type=button value="Click Moi" onClick="goodFunc();">
+</FORM>
+</BODY>
+</HTML>

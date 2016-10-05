@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+   <TITLE>Stacking up!</TITLE>
+<SCRIPT>
+var stack = new Array(); 
+
+function pushStack(newVal) {
+   stack.push(newVal);
+}
+
+function popStack() {
+   var popVal = stack.pop();
+   if (popVal == undefined)
+      return "Nothing left on the stack!";
+   else
+   return popVal;
+}
+
+function showStack(theSelect){
+   theSelect.options.length = 0;
+   for (var i = 0; i < stack.length; i++){
+      var theOption = new Option(stack[i]);
+      theSelect.options[theSelect.options.length] = theOption;
+   }
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+
+<FORM>
+<INPUT type=text name=txtPush>
+<INPUT type=button value="Push" onClick='pushStack(txtPush.value);
+   txtPush.value=""; showStack(theList);'>
+<SELECT name="theList" size=12>
+<OPTION>Displays the current state of the stack!
+</SELECT>
+<INPUT type=text name=txtPop size=25>
+<INPUT type=button value="Pop" onClick="txtPop.value = popStack();
+   showStack(theList);">
+</FORM>
+</BODY>
+</HTML>

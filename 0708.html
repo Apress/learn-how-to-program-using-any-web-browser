@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<TITLE>Instance method demo</TITLE>
+</HEAD>
+   <BODY>
+   <H1>
+   <SCRIPT>
+   function Rectangle(height, width){
+   // constructor function
+      this.height =  height;
+      this.width = width;
+   }
+   function calc_Area () {
+      return this.height * this.width;
+   }
+
+   function to_String() {
+      return "I am a funny rectangle short and stout: " +
+          this.height + " by " +
+          this.width + "."
+   }
+   Rectangle.prototype.calcArea = calc_Area;
+   Rectangle.prototype.toString = to_String;
+
+   var theRectangle = new Rectangle (2, 42);
+   document.write(theRectangle);
+   </SCRIPT>
+   </H1>
+   </BODY>
+</HTML>

@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+   <TITLE>Slide Show</TITLE>
+</HEAD>
+<BODY bgcolor=black text=white>
+<SCRIPT>
+var gardenPix = new Array("","http://www.bearhome.com/garden/images/gard1.jpg", 
+"http://www.bearhome.com/garden/images/gard2.jpg", 
+"http://www.bearhome.com/garden/images/gard3.jpg", 
+"http://www.bearhome.com/garden/images/gard4.jpg",
+"http://www.bearhome.com/garden/images/gard5.jpg",
+"http://www.bearhome.com/garden/images/gard6.jpg",
+"http://www.bearhome.com/garden/images/gard7.jpg",
+"http://www.bearhome.com/garden/images/gard8.jpg",
+"http://www.bearhome.com/garden/images/gard9.jpg",
+"http://www.bearhome.com/garden/images/gard10.jpg");
+var whichPic = 1;
+var timeOutId;
+function inOrder() {
+   showPic(whichPic);   
+   whichPic ++;
+   if (whichPic > 10) 
+       whichPic = 1;
+   status = whichPic;
+   timeOutId=setTimeout("inOrder();",1000);
+}
+function showRandom() {
+   whichPic = Math.floor(Math.random() * 11);
+   if (whichPic == 0)
+      whichPic = 1;
+   showPic(whichPic);   
+   status = whichPic;
+   timeOutId=setTimeout("showRandom();",1000);
+}
+function showPic(i) {
+   document.images[0].src=gardenPix[i];
+}
+</SCRIPT>
+<H1>View a slide show of our garden today!</H1>
+<FORM>
+<TABLE cellpadding=20 cellspacing=20>
+<TR><TD>
+<INPUT type=button value="Show in Order" name=theButton onClick="inOrder();">
+</TD><TD>
+<INPUT type=button value="Random and Repeat" name=theButton onClick="showRandom();">
+</TD><TD>
+<INPUT type=button value="Stop" name=theButton onClick="clearTimeout(timeOutId);">
+</TD></TR>
+</TABLE><BR>
+</FORM>
+<IMG name=slideshow src="http://www.bearhome.com/garden/images/gard6.jpg" width=500 border=5>
+</BODY>
+</HTML>

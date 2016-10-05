@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+   <TITLE>
+   Counting rabbits...
+   </TITLE>
+   <SCRIPT>
+       function fib (inNum) {
+    if (inNum == 0) 
+       var fibNum = 0;
+    else
+       {
+        if (inNum == 1)
+           fibNum = 1;
+        else
+           {
+            //recurse function call
+            fibNum = fib(inNum - 2) + fib(inNum - 1);
+           }
+        }
+        return fibNum;
+   }
+   function writeFibs(topFib) {
+      for (var i=0;  i <= topFib ; i++)
+    {
+     document.write ("Fib(" + i + ") = " + fib(i) + " rabbit pairs<br>");
+    }
+   }
+   
+   </SCRIPT>
+</HEAD>
+<BODY>
+   <FORM Name="theForm">
+   <TABLE cellspacing=5>
+      <TR>
+         <TD><INPUT Type=Text Name="numFibs">
+         <TD><INPUT Type=Button Value="Show Fibs" onClick='writeFibs(numFibs.value);'>
+      </TR>
+   </TABLE>
+</FORM>
+</BODY>
+</HTML>

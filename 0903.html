@@ -1,0 +1,101 @@
+<HTML>
+<HEAD>
+   <TITLE>String Play</TITLE>
+<SCRIPT>
+function capWords(str){
+   // break into an array of words, 
+   // using space as the delimiter
+   words = str.split(" "); 
+   for (i=0 ; i < words.length ; i++){
+      // inner loop -- do the capitalizing
+      testwd = words[i];
+      firLet = testwd.substr(0,1); //lop off first letter
+      rest = testwd.substr(1, testwd.length -1)
+      words[i] = firLet.toUpperCase() + rest   
+   }         
+   document.theForm.results.value = words.join(" ");
+}
+function countWords(str){
+   var count = 0;
+   // break into an array of words, 
+   // using space as the delimiter
+   // words.length won't work because of spaces
+   words = str.split(" "); 
+    for (i=0 ; i < words.length ; i++){
+       // inner loop -- do the count
+       if (words[i] != "")
+          count += 1; 
+    }
+
+   document.theForm.results.value = 
+      "There are " +
+      count +
+      " words in the text string you entered!";
+}
+function revWords(str){
+   // break into an array of words, 
+   // using space as the delimiter
+   words = str.split(" ");
+   j = words.length - 1;
+   backWords = new Array(); 
+   for (i=0 ; i < words.length ; i++){
+      // inner loop -- reversing
+      backWords[j] = words[i];
+      j--
+   }         
+   document.theForm.results.value = backWords.join(" ");
+}
+function revString(str) {
+   retStr = "";
+   strArray = new Array(str.split(""));
+   for (i=str.length - 1 ; i > - 1 ; i--){
+      retStr += str.substr(i,1);
+   }
+   return retStr;
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>
+Playing with strings!
+</H1>
+
+<FORM name="theForm">
+<TABLE>
+<tr><td colspan=5>
+Enter a text string:
+</td></tr><tr><td colspan=5>
+<TEXTAREA name=inStr rows=5 cols=90>
+</TEXTAREA>
+</td></tr>
+<tr><td>
+<INPUT type=button value="Capitalize Words" onClick="capWords(document.theForm.inStr.value)";>
+</td>
+<td>
+<INPUT type=button value="Count Words" onClick="countWords(document.theForm.inStr.value)";>
+</td>
+<td>
+<INPUT type=button value="Reverse Words" onClick="revWords(document.theForm.inStr.value)";>
+</td>
+<td>
+<INPUT type=button value="Reverse String" onClick="document.theForm.results.value = revString(document.theForm.inStr.value)";>
+</td>
+<td>
+<INPUT type=button value="Clear" onClick='document.theForm.inStr.value=""';>
+</td>
+</tr>
+<tr><td colspan=5>
+<br><hr>
+Results<br>
+</td></tr>
+<tr><td colspan=5>
+<TEXTAREA name=results rows=5 cols=90>
+</TEXTAREA>
+</td></tr>
+<tr><td colspan=5>
+<INPUT type=button name="theButton" value="Clear Results" onClick='document.theForm.results.value=""';>
+</td></tr>
+</TABLE>
+</FORM>  
+</BODY>
+</HTML>

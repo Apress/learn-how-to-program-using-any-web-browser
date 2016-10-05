@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+   <TITLE>Keystroke detector</TITLE>
+</HEAD>
+<BODY>
+<SCRIPT>  
+   
+function checkKey(e){
+   if (e.keyCode == 84){
+      alert("You have dotted those eyes, but you can't put any Tees in the box!");
+      if (navigator.appName == "Microsoft Internet Explorer")
+         e.returnValue = false; //works with Explorer
+      else {
+         //deal with Navigator or Mozilla
+         str = document.theForm.theText.value;
+         if (str.length == 1) 
+            newstr=" ";
+         else {
+            newstr = str.substring(0, str.length -1);
+         }
+         document.theForm.theText.value = newstr;          
+      }
+   }
+   else {     
+      alert ("You entered the character " + String.fromCharCode(e.keyCode) + ".");
+   }
+}
+</SCRIPT>
+
+<FORM name="theForm">
+<INPUT type=text name="theText" onKeyDown="checkKey(event);">
+
+</FORM>
+
+</BODY>
+</HTML>

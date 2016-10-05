@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+   <TITLE>Strim a tring</TITLE>
+<SCRIPT>
+function ltrim(testStr) {
+   if (testStr == "")
+      return "";
+   else {
+      var pattern = /[^\s]+.*/;
+      result = testStr.match(pattern);
+      return result[0];
+   }
+}
+function rtrim(testStr) {
+   if (testStr == "")
+      return "";
+   else {
+      var pattern = /.*[\S]/;
+      result = testStr.match(pattern);
+      return result[0];
+   }
+}
+
+function trim(testStr) {
+   return rtrim(ltrim(testStr));
+}
+
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>
+Trim a string today!
+</H1>
+<FORM name="theForm">
+<TABLE>
+<tr><td colspan=4>
+Enter string for trimming:
+</td></tr><tr><td colspan = 4>
+<INPUT type=text name=testStr size=60>
+</td></tr>
+<tr><td colspan=3>
+<INPUT type=button name="theButton" value="Trim"    
+onClick="document.theForm.display.value = trim(document.theForm.testStr.value)";>
+</td><td>
+<INPUT type=button name="theButton" value="Clear" onClick='document.theForm.testStr.value=""; document.theForm.display.value=""'>
+</td></tr><tr><td colspan=4> <br><hr>
+Here's the trimmed string:
+<br> </td></tr><tr><td colspan = 4>
+<INPUT type=text name=display size=60>
+</td></tr>
+</TABLE>
+</FORM>  
+</BODY>
+</HTML>

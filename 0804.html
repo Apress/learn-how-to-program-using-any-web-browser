@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<TITLE>An event of my own!</TITLE>
+<SCRIPT>
+// Define a Thing object
+function Thing (name, text1, text2) {
+   this.name = name;
+   this.text1 = text1;
+   this.text2 = text2;
+}
+Thing.prototype.toString = function () {
+   return this.name;
+}
+
+function on_Same () {
+   alert("The two values entered in " + this.toString() +
+      " are the same!");
+}
+
+function check_Same() {
+   if (this.text1 == this.text2) {
+       this.onSame();
+   }
+}
+
+Thing.prototype.checkSame = check_Same;
+Thing.prototype.onSame = on_Same;
+
+function createThing (name, text1, text2) {
+   var x = new Thing (name, text1, text2);
+   x.checkSame();
+}
+
+</SCRIPT>
+</HEAD>
+<BODY>
+<TABLE>
+<FORM>
+<TR><TD>Name your object:</TD><TD><input type=text name="txtName"></TD></TR>
+<TR><TD>Enter first text:</TD><TD><input type=text name="txtFirst"></TD></TR>
+<TR><TD>Enter second text:</TD><TD><input type=text name="txtSecond"></TD></TR>
+<TR><TD></TD><TD><input type=button value="Do It!"
+   onClick="createThing (txtName.value, txtFirst.value, txtSecond.value);"></TD></TR>
+</FORM>
+</TABLE>
+</BODY>
+</HTML>

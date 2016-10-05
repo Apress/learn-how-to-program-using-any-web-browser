@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+   <TITLE>On Close</TITLE>
+</HEAD>
+<BODY>
+<SCRIPT>
+
+function checkForm(e) {
+   if (navigator.appName == "Microsoft Internet Explorer") {
+      if (!(window.confirm("Do you want to submit the form?")))
+         e.returnValue = false;
+   }
+   else {
+      if (window.confirm("Do you want to submit the form?"))
+         document.theForm.submit();
+   }
+}
+if (navigator.appName == "Microsoft Internet Explorer") {
+   document.write("<");
+   document.write("FORM name='theForm' action='0801.html' onSubmit='checkForm(event);'");
+   document.write("><");
+   document.write("INPUT type=submit");
+   document.write("> <");
+   document.write("/FORM");
+   document.write(">");
+}
+else {
+   document.write("<");
+   document.write("FORM name='theForm' action='0801.html'");
+   document.write("><");
+   document.write("INPUT type=button name='theButton' value='SUBMIT QUERY' onClick='checkForm();'");
+   document.write("> <");
+   document.write("/FORM");
+   document.write(">");
+}  
+</SCRIPT>
+</BODY>
+</HTML>

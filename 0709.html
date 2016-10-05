@@ -1,0 +1,205 @@
+<HTML>
+<HEAD>
+<TITLE>Tchatshke Gulch - The world's smallest on-line marketplace</TITLE>
+  <SCRIPT>
+  // Bid prototype object   
+
+   function Bid (name, max_amount, curr_amount) {
+      this.name = name;
+      this.max_amount = max_amount;
+      this.curr_amount = curr_amount;
+   }
+
+   Bid.prototype.toString = function(){
+      return this.name + ": current bid: " + this.curr_amount + " Max amount (proxy bidding): " + this.max_amount;
+   }
+   
+   Bid.prototype.valueOf = function() { return this.curr_amount;}
+
+   // Auction prototype object 
+
+   function Auction (lot_num, desc, start_bid, increment){
+      this.lot_num = lot_num;
+      this.desc = desc;
+      this.start_bid = start_bid;
+      this.increment = increment;
+      this.bidArray = new Array();
+      this.status = "";
+      this.currBid = start_bid;
+   }
+   
+   function display_Bids (){
+      var displayStr = "";
+      for (var i = 0; i < this.bidArray.length; i++){
+           displayStr += this.bidArray[i].toString() + "\r\n";
+      }  
+      window.document.resultForm.txtBids.value = displayStr;
+   }
+   
+   function update_Bids () {
+      var winnerIndex = 0;
+      for (var i = 0; i < this.bidArray.length; i++){
+         if (Number(this.bidArray[i].curr_amount) < Number(this.currBid)){
+            if (Number(this.bidArray[i].max_amount) >= Number(this.currBid) + Number(this.increment)){
+               this.bidArray[i].curr_amount = Number(this.currBid) + Number(this.increment);          
+               this.currBid = this.bidArray[i].curr_amount;
+               winnerIndex = i;
+            }
+         }   
+      }  
+      window.document.resultForm.txtCurrentHighBid.value = "Current High Bid: " + this.currBid + "\r\n" +
+         this.bidArray[winnerIndex].toString();
+      this.displayBids();
+   }
+   
+   function end_Auction () {
+      var winnerIndex = 0;
+      var highBid = 0;      
+      for (var i = 0; i < this.bidArray.length; i++){
+         if (Number(this.bidArray[i].max_amount) > Number(highBid)){
+            highBid = Number(this.bidArray[i].max_amount);
+            winnerIndex = i;
+         }
+      }
+      var runnerUpIndex = 0;
+      var runnerUpBid = 0;
+      for (var i = 0; i < this.bidArray.length; i++){
+          if (Number(this.bidArray[i].max_amount) > Number(runnerUpBid) && (i != winnerIndex)){
+            // runnerUpBid = Number(this.bidArray[i].max_amount);
+            runnerUpIndex = i;
+         }
+           
+      }
+      var winningBid = Math.min(Number(this.bidArray[runnerUpIndex].max_amount) + 
+         Number(this.increment), Number(this.bidArray[winnerIndex].max_amount));
+         this.bidArray[winnerIndex].curr_amount = winningBid;
+      window.document.resultForm.txtCurrentHighBid.value = "The winner is " + 
+         this.bidArray[winnerIndex].name + "\r\n" +
+         "Detail: " +  this.bidArray[winnerIndex].toString();
+      this.displayBids();
+      window.document.createForm.btnCreateAuction.disabled = false;      
+   } 
+
+   function make_Bid (name, max_amount, curr_Bid) {
+       var thisBid = new Bid (name, max_amount, curr_Bid);
+       this.bidArray [this.bidArray.length] = thisBid;       
+   }
+   
+   Auction.prototype.displayBids = display_Bids;     
+   Auction.prototype.updateBids = update_Bids;
+   Auction.prototype.endAuction = end_Auction;
+   Auction.prototype.makeBid = make_Bid; 
+   Auction.prototype.toString = function(){
+      return this.desc;
+   }
+   window.status = "No auction active!";
+   var theAuction;
+
+   function createAuction(lot, desc, startBid, inc) {
+      if (lot == "" || desc == "" || startBid == "" || inc == "" ) {
+         alert ("You are missing a required value!");
+      }
+      else {
+         theAuction = new Auction (lot, desc, startBid, inc);
+         window.status = theAuction + " Auction is active!";
+         window.document.createForm.btnCreateAuction.disabled = true;
+         var displayStr = "Auction Active! Lot Number " + lot + "\r\n" +
+            "Description: " + desc + "\r\n" +
+            "Starting Bid: " + startBid + "\r\n" +
+            "Bidding Increment: " + inc + "\r\n";
+         window.document.resultForm.txtAuctionStatus.value = displayStr;
+         window.document.resultForm.txtCurrentHighBid.value = "";
+         window.document.resultForm.txtBids.value = "";
+     }
+   } 
+
+   function placeBid (name, max_value){
+      if (theAuction == undefined) {
+         alert ("You must first create an auction before bids can be placed!");
+         return;
+      }
+      if (name == "" || max_value == "" ) {
+          alert ("You must enter your name and your highest bid!");
+          return;
+      }
+      if (Number(max_value) < Number(theAuction.start_bid)) {
+         alert ("Sorry, bid less than minimum. Please try again!");
+         
+         return;
+      }
+      
+      if (Number(max_value) < Number(theAuction.currBid) + Number(theAuction.increment)){
+         alert ("Sorry, your bid is less than the current bid " + theAuction.currBid +
+             " plus the auction increment amount " + theAuction.increment  + ". Please try again!");
+         return;
+      } 
+      var curr_Bid = Number(theAuction.currBid) + Number(theAuction.increment);
+      theAuction.currBid = curr_Bid;
+      theAuction.makeBid (name, max_value, curr_Bid);
+      window.document.bidForm.txtName.value = "";
+      window.document.bidForm.txtMaxBid.value = ""; 
+      window.document.resultForm.txtCurrentHighBid.value = "Current High Bid: " + curr_Bid + "[" + name + "]\r\n" +
+         "Note that this does not reflect proxy bidding and maximum bids submitted. "+ "\r\n" +
+         "Click Update Bids to progress the auction. Click Close Auction to determine the winner.";
+   }
+   </SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFFFFF" link="#0000FF">
+<H1>Tchatshke Gulch</H1>
+<H3>World's smallest on-line marketplace</H3>
+<! -- Outer table -->
+<TABLE>
+<TR><TD>
+
+<! -- table and form for creating the auction -->
+<form name="createForm">
+<TABLE cellspacing=8>
+<TR><TD>Enter lot number:</TD><TD><input type=text name="txtLotNum"></TD></TR>
+<TR><TD>Enter description:</TD><TD><input type=text name="txtDesc"></TD></TR>
+<TR><TD>Enter starting bid:</TD><TD><input type=text name="txtStartBid"></TD></TR>
+<TR><TD>Enter bid increment:</TD><TD><input type=text name="txtIncrement"></TD></TR>
+<TR><TD></TD><TD><input type=button name="btnCreateAuction" value="Create Auction" onClick="createAuction(txtLotNum.value,
+txtDesc.value, txtStartBid.value, txtIncrement.value);"></TD></TR>
+</TABLE>
+</form>
+<! -- end of table and form for creating the auction -->
+</TD><TD>
+
+<!-- bid table -->
+<form name="bidForm">
+<TABLE cellspacing=8>
+<TR><TD>Enter your name:</TD><TD><input type=text name="txtName"></TD></TR>
+<TR><TD>Enter maximum bid:</TD><TD><input type=text name="txtMaxBid"></TD></TR>
+<TR><TD></TD><TD><input type=button value="Place Bid" 
+   onClick="placeBid(txtName.value, txtMaxBid.value);"></TD></TR>
+</TABLE>
+</form>
+
+<!-- end of bid table -->
+</TD></TR><TR>
+<TD colspan=2>
+<! -- auction results table>
+
+<form name="resultForm">
+<TABLE cellspacing=8>
+<TR><TD colspan=3><textarea name="txtAuctionStatus" cols=80 rows=6></textarea></TD></TR>
+<TR><TD colspan=3><textarea name="txtCurrentHighBid" cols=80 rows=4></textarea></TD></TR>
+<TR><TD colspan=3><textarea name="txtBids" cols=80 rows=5></textarea></TD></TR>
+<TR><TD><input type=button value="Display Bids" onClick="if (theAuction != null) theAuction.displayBids();"></TD>
+<TD><input type=button value="Update Bids" name="btnUpdate"
+   onClick="if (theAuction != null) theAuction.updateBids();"></TD>
+<TD><input type=button value="Close Auction" 
+   onClick="if (theAuction != null) {theAuction.endAuction(); theAuction = undefined;}"></TD></TR>
+</TABLE>
+</form>
+
+
+<! end of auction results table -->
+</TD></TR>
+
+</TABLE>
+<! -- end of outer table -->
+
+ 
+</BODY>
+</HTML>

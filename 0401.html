@@ -1,0 +1,16 @@
+<HTML>
+   <BODY>
+   <H1>
+   <SCRIPT>
+      var newString = "";
+      var theString = prompt("Enter a string for reversal","");
+      var counter = theString.length;
+      for (counter  ;counter > 0 ;counter -- )
+      {
+         newString += theString.substring(counter-1, counter);
+      }   
+      document.write(theString + " reversed is " + newString + "!");
+   </SCRIPT>
+   </H1>
+   </BODY>
+</HTML>

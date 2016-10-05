@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+   <TITLE>Catch that error!</TITLE>
+<SCRIPT>
+function catchError(errString) {
+   try {
+      try {
+         if (errString == 42)
+            throw new Error (42, "errString is 42!");
+         else
+            throw new Error (0, "errString is NOT 42!");
+      }
+      catch(e) {
+         if (e.number == 42)
+            return (e.description + " Got this one!");
+         else
+            throw e; // re-throw the error
+      } 
+   }
+   catch (e){
+      return(e.description + " This one not handled here!");
+   } 
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>
+Catch that error!
+</H1>
+<FORM name="theForm">
+<TABLE>
+<TR><TD colspan=2>
+We can handle 42:
+</TD><TD>
+<INPUT type=text name=errText size=40 value="42">
+</TD></TR><TR><TD colspan=2>
+</TD><TD>
+<INPUT type=button name=btnThrow value="Catch it!" onClick="alert(catchError(document.theForm.errText.value));">
+</TD></TR>
+</TABLE>
+</FORM>  
+</BODY>
+</HTML>

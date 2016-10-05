@@ -1,0 +1,31 @@
+<HTML>
+<BODY>
+<CENTER>
+<SCRIPT>
+   var width=1;
+   for (i=0; i <= 5 ; i++)
+   {
+      for (x=0; x<=4; x++)
+      {
+         for (y=1; y<=width; y++)
+         {
+            var Number=Math.random()*10;
+            var Ornament=Math.round(Number);
+            if (Ornament<=1)
+            {
+               document.write("O");
+            }
+            if (Ornament>=2)
+            {
+               document.write(" X");
+            }
+         }
+         document.write("<BR>");
+         width=width+1;
+      }
+      width=width-2;
+   }
+</SCRIPT>
+</CENTER>
+</BODY>
+</HTML>

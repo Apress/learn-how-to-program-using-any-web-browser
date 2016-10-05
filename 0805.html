@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>As time goes by...</TITLE>
+<SCRIPT>
+var timerID;
+var x;
+
+function Thing (name) {
+   this.name = name;
+}
+
+
+function fireIt () {
+   var now = new Date();
+   var displayStr = window.document.theForm.txtFired.value; 
+   displayStr += "Hello: " + x.name +  " " + now + "\r\n"; 
+   window.document.theForm.txtFired.value = displayStr;
+}
+
+function startIt (name) {
+   x = new Thing (name);
+   timerID = setInterval("fireIt()", 1000);
+}
+
+function stopIt() {
+   clearInterval(timerID);
+}
+
+</SCRIPT>
+</HEAD>
+<BODY>
+<TABLE>
+<FORM name="theForm">
+<TR><TD>Name your object:</TD><TD><input type=text name="txtName"></TD></TR>
+<TR><TD></TD><TD><input type=button value="Start!"
+   onClick="startIt (txtName.value);"></TD>
+<TD><input type=button value="Stop!"
+   onClick="stopIt();"></TD></TR>
+<TR><TD></TD><TD></TD></TR>
+<TR><TD colspan=2><textarea name="txtFired" cols = 60 rows=20></textarea></TD></TR>
+</FORM>
+</TABLE>
+</BODY>
+</HTML>

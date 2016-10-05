@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+   <TITLE>
+   Simple dialogs
+   </TITLE>
+   <SCRIPT>
+   function showAlert(inText) {
+      alert (inText);
+   }
+   function showConfirm(){
+      if (confirm("Do you want to dance?") == true)
+         return "The user wants to dance!"
+      else
+         return "No dancing tonight!";
+   }
+   function showPrompt(inText){
+      var retVal = ""
+      retVal = prompt(inText, "John Doe");
+      if (retVal == "" || retVal == null)
+         return "nameless one";
+      else
+         return retVal;
+     
+     // line below produces ugly result if no user input!
+     // return prompt(inText, "John Doe");
+   }
+   </SCRIPT>
+</HEAD>
+<BODY>
+   <FORM Name="theForm">
+   <TABLE cellspacing=5>
+      <TR>
+         <TD><INPUT Type=Text Name="alertText" Size=40>
+         <TD><INPUT Type=Button Value="Alert" onClick='showAlert(alertText.value);'>
+      </TR>
+        <TR>
+         <TD><INPUT Type=Text Name="decisionText" Size=40>
+         <TD><INPUT Type=Button Value="Confirm" onClick='decisionText.value = showConfirm();'>
+      </TR>
+      <TR>
+         <TD><INPUT Type=Text Name="nameText" Size=40>
+         <TD><INPUT Type=Button Value="Prompt" onClick='nameText.value = "Hello, " + showPrompt("What is your name?");'>
+      </TR>
+   </TABLE>
+</FORM>
+</BODY>
+</HTML>

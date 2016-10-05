@@ -1,0 +1,28 @@
+<HTML>
+<BODY>
+<FORM>
+<TABLE>
+<TR>
+<TD>Enter Your Name:</TD>
+<TD></TD>
+<TD><INPUT TYPE=text NAME=userName  VALUE="Harry Potter"></TD>
+</TR>
+<TR>
+</TR>
+<TR>
+<TD>Enter Your Age:</TD>
+<TD></TD>
+<TD><INPUT TYPE=text NAME=userAge  VALUE="12"></TD>
+</TR>
+<TR>
+</TR>
+<TR>
+<TD></TD>
+<TD></TD>
+<TD><INPUT TYPE=button VALUE="Check Age" onClick='var status = (userAge.value >= 21) ? "an adult" : "a minor";
+alert(userName.value + " is " + status + ".");'></TD>
+</TR>
+</TABLE>
+</FORM>   
+</BODY>
+</HTML>
